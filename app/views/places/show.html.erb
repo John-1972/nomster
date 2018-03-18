@@ -31,6 +31,14 @@
 
   <br />
 
+  <% @place.photos.each do |photo| %>    
+    <blockquote>
+      <%= photo.caption %>
+    </blockquote>
+  <% end %>
+
+  <br />
+
   <div class="float-right">
     <% if current_user && current_user == @place.user %>
       <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
