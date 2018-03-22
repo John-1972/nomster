@@ -43,6 +43,40 @@ blockquote p {
   font-size: 26px;
 }
 
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+
+.mini-img {
+  width: 300px;
+  height: auto;
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.help-block {
+  color: #ff3333;
+  background-color: #ffeeee;
+  border-radius: 3px;
+  padding: 2px 8px 2px 8px;
+}
+
 .apple_pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
@@ -71,29 +105,6 @@ blockquote p {
     color: black; }
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
-
-.booyah-box {
-  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  padding: 20px;
-}
-
-.help-block {
-  color: #ff3333;
-  background-color: #ffeeee;
-  border-radius: 3px;
-  padding: 2px 8px 2px 8px;
-}
-
-.clear {
-  clear: both;
-}
 
 #map {
   height: 300px;

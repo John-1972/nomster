@@ -31,8 +31,10 @@
 
   <br />
 
-  <% @place.photos.each do |photo| %>    
-    <%= image_tag photo.picture %>
+  <% @place.photos.each do |photo| %>
+    <div class="centered">
+      <%= image_tag photo.picture %>
+    </div>
     <blockquote>
       <%= photo.caption %>
     </blockquote>
