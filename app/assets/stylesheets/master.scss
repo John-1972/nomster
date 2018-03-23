@@ -55,14 +55,22 @@ blockquote p {
   padding: 20px;
 }
 
+.clear {
+  clear: both;
+}
+
+.display_inline {
+  display: inline-block;
+}
+
+.display_inherit {
+  display: inherit;
+}
+
 .mini-img {
   width: 300px;
   height: auto;
   float: right;
-}
-
-.clear {
-  clear: both;
 }
 
 .centered {
