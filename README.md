@@ -1,24 +1,5 @@
-# README
+# Nomster; Yelp Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Nomster was the second project on the Firehose Full-stack bootcamp course. It's a Yelp clone that integrates with the Google Maps API and includes features like user comments, star ratings, image uploading, and user authentication.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A demo of the site can be seen here: https://nomster-john-henderson.herokuapp.com/
