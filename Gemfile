@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -52,7 +53,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'popper_js', '~> 1.11.1'
+gem 'popper_js', '~> 1.14.3' # This was 1.11.1
 gem 'bootstrap', '4.0.0.alpha6'
 
 source 'https://rails-assets.org' do
@@ -62,7 +63,7 @@ end
 gem 'will_paginate', '~> 3.0'
 gem 'simple_form'
 gem 'font-awesome-rails'
-gem 'devise'
+gem 'devise', '>= 4.6.0' # This didn't have a version specified before
 gem 'geocoder'
 gem 'figaro'
 gem 'carrierwave', '~> 1.0'
