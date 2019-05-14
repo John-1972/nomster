@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.4.5'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -53,7 +53,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'popper_js', '~> 1.14.3' # This was 1.14.3
+gem 'popper_js', '~> 1.14.3' # Was 1.14.3
 gem 'bootstrap', '~> 4.3.1' # Was '4.0.0.alpha6'
 
 source 'https://rails-assets.org' do
