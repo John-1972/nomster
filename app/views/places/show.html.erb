@@ -33,7 +33,7 @@
 
   <% @place.photos.each do |photo| %>
     <div class="display_inherit">
-      <%= image_tag photo.picture, class: 'centered' %>
+      <%= image_tag photo.picture.url, class: 'centered' %>
     </div>
     <blockquote>
       <%= photo.caption %>
