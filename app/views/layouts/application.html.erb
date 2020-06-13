@@ -10,49 +10,49 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark"> <!-- Navbar expands at size "md", navbar-dark = light toggler color, bg-dark = dark grey background -->
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"> <!-- Button provides drop-down menu of links. Navbar of links replaced by button when screen < "md" width -->
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <%= link_to 'Nomster', root_path, class: 'navbar-brand' %>
+      <%= link_to 'Nomster', root_path, class: 'navbar-brand' %> <!-- Logo links to homepage -->
 
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-          <li class="nav-item">
-            <%= link_to new_place_path, class: 'nav-link' do %>
-              <i class="fa fa-plus-circle"></i>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02"> <!-- Hide navbar contents -->
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0"> <!-- ul, navbar-nav = group of links, margin-right-auto moves this group to the left -->
+          <li class="nav-item"> <!-- Link within group -->
+            <%= link_to new_place_path, class: 'nav-link' do %> <!-- Rails gives destination -->
+              <i class="fa fa-plus-circle"></i> <!-- Plus-circle icon -->
               New Place
-            <% end %>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <% if user_signed_in? %>
+            <% end %> <!-- End of Rails code -->
+          </li> <!-- class="nav-item" -->
+        </ul> <!-- End of link grouping -->
+        <ul class="navbar-nav"> <!-- ul, navbar-nav = new group of links -->
+          <% if user_signed_in? %> <!-- If user signed in, show these links... -->
             <li class="nav-item">
               <%= link_to 'My Profile', user_path(current_user), class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
-          <% else %>
+          <% else %> <!-- If not signed in, show these links... -->
             <li class="nav-item">
               <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
             </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+          <% end %> <!-- end if -->
+        </ul> <!-- class="navbar-nav" -->
+      </div> <!-- class="collapse navbar-collapse" -->
+    </nav> <!-- class="navbar" -->
 
-    <% if notice.present? %>
+    <% if notice.present? %> <!-- "You need to sign in" alerts appear directly beneath navbar -->
       <p class="alert alert-info"><%= notice %></p>
     <% end %>
     <% if alert.present? %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <%= yield %>
+    <%= yield %> <!-- *** Insert point for page content *** -->
   </body>
 </html>

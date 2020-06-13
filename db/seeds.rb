@@ -15,7 +15,6 @@ Place.create(name: 'Confucius', address: '2 Cooper Street, Chichester, West Suss
 Place.create(name: 'Cote Brasserie', address: '63 South Street, Chichester, West Sussex', description: 'A restaurant serving French food for breakfast, lunch & dinner.')
 Place.create(name: 'Pizza Express', address: '27 South Street, Chichester, West Sussex', description: 'Lovely crispy crust pizzas in a great atmosphere.')
 Place.create(name: 'Prezzo', address: '61 South Street, Chichester, West Sussex', description: 'A family-friendly restaurant serving Italian food.')
-Place.create(name: 'Real Burger Kitchen', address: '5-6 South Street, Chichester, West Sussex', description: 'A great choice of burgers, served with fries & cold drinks.')
 Place.create(name: 'Spire\'s Bakery', address: '3A Crane Street, Chichester, West Sussex', description: 'A small & friendly cafe that offers good English food.')
 Place.create(name: 'The Chantry', address: '27-28 Southgate, Chichester, West Sussex', description: 'A great place to order stone-baked pizza.')
 Place.create(name: 'Wildwood', address: '30 Southgate, Chichester, West Sussex', description: 'A traditional restaurant which specialises in pizza & pasta.')
