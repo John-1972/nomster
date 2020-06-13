@@ -1,4 +1,5 @@
-<div class="booyah-box col-10 offset-1">
+<!-- Code to produce a form to allow users to create a new place -->
+<div class="booyah-box col-10 offset-1"> <!-- Infobox, 10/12 of screen width, 1/10 indent -->
   <h1>Enter Your Place Details</h1>
   <%= simple_form_for @place do |f| %>
     <%= f.input :name %>
@@ -7,4 +8,4 @@
     <br />
     <%= f.submit 'Create', class: 'btn btn-primary' %>
   <% end %>
-</div>
+</div> <!-- class="booyah-box" -->

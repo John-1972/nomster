@@ -1,11 +1,12 @@
-<div class="booyah-box col-10 offset-1">
-  <h1><%= @place.name %></h1>
-  <i><%= @place.address %></i>
-  <br /><br />
-  <p><%= @place.description %></p>
+<!-- Page to show details of individual place in database -->
+<div class="booyah-box col-10 offset-1"> <!-- Infobox, 10/12 of screen width, 1/12 indent -->
+  <h1><%= @place.name %></h1> <!-- Start by displaying place name -->
+  <i><%= @place.address %></i> <!-- Place address -->
+  <br /><br /> <!-- 2 line breaks -->
+  <p><%= @place.description %></p> <!-- Place description -->
 
-  <% if @place.latitude.present? && @place.longitude.present? %>
-    <script>
+  <% if @place.latitude.present? && @place.longitude.present? %> <!-- If lat/long are stored -->
+    <script> /* ...insert a Google map to show the location of the place */
       function initMap() {
         var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
 
@@ -24,111 +25,108 @@
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqTmthd_tzjF_DS5RcmBMW_hO_gH4WSlo&callback=initMap">
-    </script>
+    </script> <!-- Ahh! Here is my Google API map key thingy. I need to reinstate this on my Mac... -->
 
     <div id="map"></div>
-  <% end %>
+  <% end %> <!-- end if -->
 
-  <br />
+  <br /> <!-- 1 line break -->
 
-  <% @place.photos.each do |photo| %>
+  <% @place.photos.each do |photo| %> <!-- Rails loops through all photos for this place... -->
     <div class="display_inherit">
-      <%= image_tag photo.picture.url, class: 'centered' %>
+      <%= image_tag photo.picture.url, class: 'centered' %> <!-- Render the photo -->
     </div>
     <blockquote>
-      <%= photo.caption %>
+      <%= photo.caption %> <!-- Render the caption -->
     </blockquote>
-  <% end %>
+  <% end %> <!-- end loop -->
 
-  <br />
+  <br /> <!-- 1 line break -->
 
-  <div class="float-right">
-    <!-- Button to trigger photo modal -->
+  <div class="float-right"> <!-- Place all this content on the RHS -->
+    <!-- Button to trigger an "Add-a-photo" modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#photoModal">
       Add a Photo
     </button>
-    <% if current_user && current_user == @place.user %>
-      <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
-      <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
-    <% end %>
-  </div>
+    <% if current_user && current_user == @place.user %> <!-- If logged-in user is also the creator of this place... -->
+      <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %> <!-- ...offer an edit btn -->
+      <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %> <!-- And offer a delete btn -->
+    <% end %> <!-- end if -->
+  </div> <!-- class="float-right" -->
 
   <br class="clear" />
-</div>
-<!-- End of Booyah box -->
+</div> <!-- class="booyah-box" -->
 
-<!-- Comments Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
+<!-- Add-a-Comment Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <!-- Container to initiate a Bootstrap modal which fades in and out -->
+  <div class="modal-dialog" role="document"> <!-- Another container -->
+    <div class="modal-content"> <!-- Inner container which holds modal content -->
+      <div class="modal-header"> <!-- First section of three -->
         <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
-      </div>
-      <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
-        <div class="modal-body">
-          <%= f.input :message %>
-          <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
-        </div>
-        <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span> <!-- "x" button to close the modal -->
+        </button>
+      </div> <!-- class="modal-header" -->
+      <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %> <!-- Rails code -->
+        <div class="modal-body"> <!-- Second section of three -->
+          <%= f.input :message %> <!-- Insert comment -->
+          <%= f.input :rating, as: :select, collection: Comment::RATINGS %> <!-- Select rating -->
+        </div> <!-- class="modal-body" -->
+        <div class="modal-footer"> <!-- Third section of three -->
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+        </div> <!-- class="modal-footer" -->
+      <% end %> <!-- end of Rails code -->
+    </div> <!-- class="modal-content" -->
+  </div> <!-- class="modal-dialog" -->
+</div> <!-- class="modal fade" -->
 
-<div class="col-10 offset-1">
-  <h1 class="float-left">Comments</h1>
-  <!-- Button to trigger comments modal -->
-  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
+<div class="col-10 offset-1"> <!-- 10/12 of screen width, 1/12 indent -->
+  <h1 class="float-left">Comments</h1> <!-- Title text pushed to the LHS -->
+  <!-- Button to trigger the "Add-a-comment" modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal"> <!-- Button pushed to the RHS, triggers id="myModal" -->
     Add a comment
   </button>
-</div>
+</div> <!-- class="col-10 offset-1" -->
 
-<div class="clear"></div>
+<div class="clear"></div> <!-- Clear floats -->
 
-<div class="row">
-  <% @place.comments.each do |comment| %>
-    <div class="col-12 col-sm-6">
+<div class="row"> <!-- Bootstrap container, create a row, then fill with columns -->
+  <% @place.comments.each do |comment| %> <!-- Loop through all comments for this place -->
+    <div class="col-12 col-sm-6"> <!-- 12/12 of "xs" screen width, 6/12 of "sm" screen -->
       <blockquote>
-        <% if comment.humanized_rating.present? %>
-          <b><%= comment.humanized_rating %></b> -
-        <% end %>
-        <%= comment.message %>
-        <small><%= comment.user.email %></small>
+        <% if comment.humanized_rating.present? %> <!-- If rating present for this comment -->
+          <b><%= comment.humanized_rating %></b> - <!-- then show the rating -->
+        <% end %> <!-- end if -->
+        <%= comment.message %> <!-- Render comment -->
+        <small><%= comment.user.email %></small> <!-- Render id of comment creator -->
       </blockquote>
-    </div>
-  <% end %>
-</div>
+    </div> <!-- class="col-12 col-sm-6" -->
+  <% end %> <!-- end loop -->
+</div> <!-- class="row" -->
 
-
-
-<!-- Photo Modal -->
-<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
+<!-- Add-a-Photo Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <!-- Container to initiate a Bootstrap modal which fades in and out -->
+  <div class="modal-dialog" role="document"> <!-- Another container -->
+    <div class="modal-content"> <!-- Inner container which holds modal content -->
+      <div class="modal-header"> <!-- First section of three -->
         <h4 class="modal-title" id="myModalLabel">Add a Photo</h4>
-      </div>
-      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
-        <div class="modal-body">
-          <%= f.input :picture %>
-          <%= f.input :caption %>
-        </div>
-        <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span> <!-- "x" button to close window -->
+        </button>
+      </div> <!-- class="modal-header" -->
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %> <!-- Rails code -->
+        <div class="modal-body"> <!-- Section section of three -->
+          <%= f.input :picture %> <!-- Insert photo -->
+          <%= f.input :caption %> <!-- Insert caption -->
+        </div> <!-- class="modal-body" -->
+        <div class="modal-footer"> <!-- Third section of three -->
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+        </div> <!-- class="modal-footer" -->
+      <% end %> <!-- End of Rails code -->
+    </div> <!-- class="modal-content" -->
+  </div> <!-- class="modal-dialog" -->
+</div> <!-- class="modal fade" -->
 
-<br />
+<br /> <!-- 1 line break -->
