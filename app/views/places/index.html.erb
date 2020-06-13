@@ -1,71 +1,71 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"> <!-- Carousel container -->
+  <ol class="carousel-indicators"> <!-- Small bars indicate how many slides & which is showing -->
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <%= image_tag 'slider1.jpg', class: 'img-fluid' %>
-      <div class="carousel-caption d-none d-md-block">
+  </ol> <!-- class="carousel-indicators" -->
+  <div class="carousel-inner" role="listbox"> <!-- Carousel inner container -->
+    <div class="carousel-item active"> <!-- Carousel item. I think "active" denotes 1st up. -->
+      <%= image_tag 'slider1.jpg', class: 'img-fluid' %> <!-- Rails provides the image -->
+      <div class="carousel-caption d-none d-md-block"> <!-- Caption to appear on image, unless screen size is smaller than "md" -->
         <h3>Find the best pizza places</h3>
-      </div>
-    </div>
+      </div> <!-- class="carousel-caption" -->
+    </div> <!-- class="carousel-item active" -->
     <div class="carousel-item">
       <%= image_tag 'slider2.jpg', class: 'img-fluid' %>
       <div class="carousel-caption d-none d-md-block">
         <h3>Find the best pasta places</h3>
-      </div>
-    </div>
+      </div> <!-- class="carousel-caption" -->
+    </div> <!-- class="carousel-item" -->
     <div class="carousel-item">
       <%= image_tag 'slider3.jpg', class: 'img-fluid' %>
       <div class="carousel-caption d-none d-md-block">
         <h3>Find the best Asian food places</h3>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      </div> <!-- class="carousel-caption" -->
+    </div> <!-- class="carousel-item" -->
+  </div> <!-- class="carousel-inner" -->
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <!-- "Previous" arrow-head on LHS of image -->
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  </a> <!-- class="carousel-control-prev" -->
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <!-- "Next" arrow-head on RHS of image -->
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
-</div>
+  </a> <!-- class="carousel-control-next" -->
+</div> <!-- class="carousel slide" -->
 
-<% @places.each do |place| %>
-  <div class="booyah-box col-10 offset-1">
-    <div class='display_inline'>
-      <h1><%= link_to place.name, place_path(place) %></h1><br />
-      <i><%= place.address %></i><br />
-      <p><%= place.description %></p><br />
+<% @places.each do |place| %> <!-- Rails: loop through all the places in the place DB table -->
+  <div class="booyah-box col-10 offset-1"> <!-- Infobox, 10/12 of screen width, indent 1/10 -->
+    <div class="display_inline"> <!-- Display... -->
+      <h1><%= link_to place.name, place_path(place) %></h1><br /> <!-- ...the name of the place -->
+      <i><%= place.address %></i><br /> <!-- ...its address -->
+      <p><%= place.description %></p><br /> <!-- ...and its description. -->
 
-      <% if place.user.present? %>
-        <small><%= place.user.email %></small>
-      <% end %>
-    </div>
+      <% if place.user.present? %> <!-- If we know the user who added the place... -->
+        <small><%= place.user.email %></small> <!-- ...print their user id. -->
+      <% end %> <!-- end if -->
+    </div> <!-- class="display_inline" -->
 
-    <% if place.photos.present? %>
-      <div class="display_inline pull-right">
+    <% if place.photos.present? %> <!-- If there's a photo of this place... -->
+      <div class="display_inline pull-right"> <!-- ...display it on the RHS -->
         <%= image_tag place.photos.first.picture.url, class: 'mini-img' %>
-      </div>
-    <% end %>
+      </div> <!-- class="display_inline" -->
+    <% end %> <!-- end if -->
 
-    <% if place.comments.present? %>
-      <div class="col-12">
+    <% if place.comments.present? %> <!-- If a review has been left for this place... -->
+      <div class="col-12"> <!-- 12/12 of width -->
         <blockquote>
-          <% if place.comments.last.humanized_rating.present? %>
-            <b><%= place.comments.last.humanized_rating %></b> -
-          <% end %>
-          <%= place.comments.last.message %>
-          <small><%= place.comments.last.user.email %></small>
+          <% if place.comments.last.humanized_rating.present? %> <!-- If last rating is here... -->
+            <b><%= place.comments.last.humanized_rating %></b> - <!-- ...print that. -->
+          <% end %> <!-- end if -->
+          <%= place.comments.last.message %> <!-- Print the last review -->
+          <small><%= place.comments.last.user.email %></small> <!-- ...with the reviewer's id -->
         </blockquote>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+      </div> <!-- class="col-12" -->
+    <% end %> <!-- end if -->
+  </div> <!-- class="booyah-box col-10 offset-1" -->
+<% end %> <!-- end loop -->
 
-<div class="apple_pagination">
+<div class="apple_pagination"> <!-- Page numbering if there's more than one -->
   <%= will_paginate @places %>
 </div>
