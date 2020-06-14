@@ -1,64 +1,65 @@
-<div class="booyah-box">
-  <div class="row">
-    <div class="col-3">
-      <%= image_tag 'user.png' %>
+<!-- This HTML shows the details for the user currently logged-in -->
+<div class="booyah-box"> <!-- Infobox -->
+  <div class="row"> <!-- Create a Bootstrap row first, then fill with columns -->
+    <div class="col-3"> <!-- First column: 3/12 of screen width -->
+      <%= image_tag 'user.png' %> <!-- Image -->
     </div>
 
-    <div class="col-9">  
-      <h1><%= @user.email %></h1>
+    <div class="col-9"> <!-- Second column: 9/12 of screen width -->
+      <h1><%= @user.email %></h1> <!-- User's id -->
       <h3>Member since: <%= @user.created_at.strftime("%d %B, %Y") %></h3>
-      <h4><%= @user.comments.count %> total comments</h4>
+      <h4><%= @user.comments.count %> total comments</h4> <!-- Number of reviews -->
       <h4>Number of 5-star reviews: <%= @user.comments.where(rating: '5_stars').count %></h4>
-    </div>
-  </div>
+    </div> <!-- class="col-9" -->
+  </div> <!-- class="row" -->
   <div class="clear"></div>
-</div>
+</div> <!-- class="booyah-box" -->
 
-<br /><br />
-<h1 class="text-center">My Comments</h1>
-<br /><br />
+<br /><br /> <!-- 2 line breaks -->
+<h1 class="text-center">My Comments</h1> <!-- Subtitle -->
+<br /><br /> <!-- 2 line breaks -->
 
-<div class="row">
-  <% @user.comments.each do |comment| %>
-    <div class="col-12 col-sm-6">
+<div class="row"> <!-- Bootstrap container, create a row then fill with columns -->
+  <% @user.comments.each do |comment| %> <!-- Rails loops through this user's review comments -->
+    <div class="col-12 col-sm-6"> <!-- Column = 12/12 of "xs" screen width, 6/12 of "sm" width -->
       <h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place) %></h2>
       <blockquote>
         <% if comment.humanized_rating.present? %>
-          <b><%= comment.humanized_rating %></b> -
+          <b><%= comment.humanized_rating %></b> - <!-- Star rating -->
         <% end %>
-        <%= comment.message %>
-        <small><%= comment.user.email %></small>
+        <%= comment.message %> <!-- Review comment -->
+        <small><%= comment.user.email %></small> <!-- Reviewer's id -->
       </blockquote>
-    </div>
-  <% end %>
-</div>
+    </div> <!-- class="col-12" -->
+  <% end %> <!-- end loop -->
+</div> <!-- class="row" -->
 
 <div class="clear"></div>
 
-<br /><br />
-<h1 class="text-center">My Places</h1>
-<br /><br />
+<br /><br /> <!-- 2 line breaks -->
+<h1 class="text-center">My Places</h1> <!-- Subtitle -->
+<br /><br /> <!-- 2 line breaks -->
 
-<% @user.places.each do |place| %>
-  <div class="booyah-box col-10 offset-1">
-  <h1><%= link_to place.name, place_path(place) %></h1>
-  <i><%= place.address %></i><br />
-  <p><%= place.description %></p><br />
+<% @user.places.each do |place| %> <!-- Loops through the places that this user has added -->
+  <div class="booyah-box col-10 offset-1"> <!-- Infobox, 10/12 of total width, 1/12 indent -->
+    <h1><%= link_to place.name, place_path(place) %></h1> <!-- (Linked) Name of place -->
+    <i><%= place.address %></i><br />
+    <p><%= place.description %></p><br />
 
-  <% if place.user.present? %>
-    <small><%= place.user.email %></small>
-  <% end %>
+    <% if place.user.present? %> <!-- If creator's id is in the database... -->
+      <small><%= place.user.email %></small> <!-- ...then print the id. -->
+    <% end %> <!-- end if -->
 
-  <% if place.comments.present? %>
-    <div class="col-12">
-      <blockquote>
-        <% if place.comments.last.humanized_rating.present? %>
-          <b><%= place.comments.last.humanized_rating %></b> -
-        <% end %>
-        <%= place.comments.last.message %>
-        <small><%= place.comments.last.user.email %></small>
-      </blockquote>
-    </div>
-  <% end %>
-</div>
-<% end %>
+    <% if place.comments.present? %> <!-- If there are comments for this place in the DB -->
+      <div class="col-12"> <!-- 12/12 of total width -->
+        <blockquote>
+          <% if place.comments.last.humanized_rating.present? %> <!-- If a rating is in the DB -->
+            <b><%= place.comments.last.humanized_rating %></b> - <!-- then print it out -->
+          <% end %> <!-- end if -->
+          <%= place.comments.last.message %> <!-- Show the last review written for this place -->
+          <small><%= place.comments.last.user.email %></small> <!-- Show id of review writer -->
+        </blockquote>
+      </div> <!-- class="col-12" -->
+    <% end %> <!-- end if -->
+  </div> <!-- class="booyah-box" -->
+<% end %> <!-- end loop -->
