@@ -67,5 +67,5 @@ gem 'font-awesome-rails'
 gem 'devise', '>= 4.6.0' # This didn't have a version specified before
 gem 'geocoder'
 gem 'figaro'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'fog-aws'
